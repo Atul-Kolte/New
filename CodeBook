@@ -1,0 +1,67 @@
+CodeBook
+The script "run_analysis.R" runs on the unzipped data from https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip
+
+Getting the Dataset
+
+First download the dataset from https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip and store in the folder Getting_and_cleaning_data
+Unzip the downloaded file that creates a subdirectory "UCI HAR Dataset"
+
+Importing the text files into tables
+
+features <- "UCI HAR Dataset/features.txt"             
+activity <- "UCI HAR Dataset/activity_labels.txt"
+testsubjects <- "UCI HAR Dataset/test/subject_test.txt"
+trainsubjects <- "UCI HAR Dataset/train/subject_train.txt"
+x_test <- "UCI HAR Dataset/test/X_test.txt"
+y_test <- "UCI HAR Dataset/test/y_test.txt"
+x_train <- "UCI HAR Dataset/train/X_train.txt"
+y_train <- "UCI HAR Dataset/train/y_train.txt"
+
+The imported tables and its dimensions
+
+features  561 Observations and 2 Variables           
+activity  6 Observations and 2 Variables
+testsubjects 2947 Observations and 1 Variable
+trainsubjects  7352 Observations and 1 Variable
+x_test 2947 Observations and 561 Variables
+y_test 2947 Observations and 1 Variable
+x_train 7352 Observations and 561 Variables
+y_train 7352 Observations and 1 Variable
+
+Merging the training and test datasets
+
+x_merged file was created by rowbinding (rbind) of x_train an x_test table
+y_merged file was created by rowbinding (rbind) of y_train an y_test table
+Subjects file was created by rowbinding (rbind) of trainsubjects an testsubjects table
+
+Creating final merged file
+
+The merged_final was creared by merging the Subjects, y_merged, x_merged using column binding (cbind) function
+
+Retaining the columns of interest i.e. containing either 'mean' or 'Standard Deviation' in their name
+
+The new dataset 'Column_Selected' was created by 'select' function of dplyr package  with retaininf the first two columns and other columns containing either "mean" or "std" in the column names
+
+The column names of the 'Column_Selected' table were replaced using gsub command and following replacements were made
+
+"tBodyAcc" =  "TimeBodyAccleration"
+"tGravityAcc" = "TimeGravityAccleration"
+"tBodyGyro" = "TimeBodyGyroscopy"
+"fBodyAcc" = "FrequencyBodyAccleration"
+"fBodyGyro" = "FrequencyBodyGyroscopy"
+"fBodyBodyAcc" ="FrequencyBodyAccleration"
+"fBodyBodyGyro" = "FrequencyBodyGyroscopy"
+
+The table was transformed to provide tidy dataset containing average of each variable for each activity and each subject
+
+The 'Tidy dataset'Column_Selected' data was grouped by Subject and Code followed by summarise all using function 'mean'
+
+The final data name is TidyData with 180 obsevations and 88 variables
+
+The data retained the code column that was remaned as Activity adn the codes were replaced using the column 2 of the activity table created under imported table. 
+
+the TidyData was written to a TidyData.txt file in the working directory
+
+
+
+

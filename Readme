@@ -1,0 +1,16 @@
+ReadME
+
+The project was created to meet the assignment criteria of the "Getting and Cleaning Data" a peer graded assignment to complete the course
+
+Dataset information: http://archive.ics.uci.edu/ml/datasets/Human+Activity+Recognition+Using+Smartphones
+
+Dataset used: https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip
+
+Files in the repo
+
+CodeBook: Describes the the steps in creating the TidyData from the downloaded files
+
+run_analysis.R : is an R script file containing the sequence of commands used on the different data files downloaded to meet the course requirement
+
+TidyData.txt is a final output of the tidy data finally created
+
